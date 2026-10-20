@@ -13,13 +13,13 @@ public class Board {
     private void initializeGrid() {
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
-                grid[i][j] = '~'; // Water
+                grid[i][j] = '~';
             }
         }
     }
 
-    private void setShip(int row, int col, char shipSymbol) {
-        grid[row][col] = shipSymbol;
+    public void setShip(int row, int col) {
+        grid[row][col] = '\u25A0';
     }
 
     public boolean isGameOver() {

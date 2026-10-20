@@ -3,7 +3,7 @@ public class Main {
         Board board1 = new Board(5,5);
         Board board2 = new Board(5,5);
 
-        System.out.println(board1);
+        board1.printBoard();
 
         Player player1 = new Player();
         Player player2 = new Player();

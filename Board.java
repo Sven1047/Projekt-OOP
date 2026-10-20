@@ -21,13 +21,22 @@ public class Board {
     public void printBoard(){
         for (int i = 0; i < rows; i++){
             for (int j = 0; i < cols; j++){
-                
+                System.out.println(grid[i][j]);
             }
         }
     }
 
     public void setShip(int row, int col) {
         grid[row][col] = '\u25A0';
+    }
+
+    public boolean isShipAt(int x, int y){
+        if (grid[x][y] == '\u25A0'){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     public boolean isGameOver() {

@@ -18,6 +18,14 @@ public class Board {
         }
     }
 
+    public void printBoard(){
+        for (int i = 0; i < rows; i++){
+            for (int j = 0; i < cols; j++){
+                
+            }
+        }
+    }
+
     public void setShip(int row, int col) {
         grid[row][col] = '\u25A0';
     }

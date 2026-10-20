@@ -14,12 +14,14 @@ public class Player {
     public Board setupShips(Board board) {
         // Logic to set up ships on the board
         System.out.println(name + ", set up your ships.");
-
-        Board
         
         Ship Destroyer = new Ship("Destroyer", 2, 0, 0, true);
         Ship Submarine = new Ship("Submarine", 3, 0, 0, true);
         
         return board;
+    }
+
+    public void takeTurn(Board board){
+        
     }
 }

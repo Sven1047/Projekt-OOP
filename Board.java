@@ -18,12 +18,23 @@ public class Board {
         }
     }
 
-    public void printBoard(){
-        for (int i = 0; i < rows; i++){
-            for (int j = 0; i < cols; j++){
-                System.out.println(grid[i][j]);
+    public void printBoard() {
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                System.out.print("+---");
             }
+            System.out.println("+");
+
+            for (int j = 0; j < cols; j++) {
+                System.out.print("| " + grid[i][j] + " ");
+            }
+            System.out.println("|");
         }
+
+        for (int j = 0; j < cols; j++) {
+            System.out.print("+---");
+        }
+        System.out.println("+");
     }
 
     public void setShip(int row, int col) {

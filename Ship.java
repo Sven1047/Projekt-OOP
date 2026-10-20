@@ -1,15 +1,20 @@
+import java.util.Scanner;
+
 public class Ship {
     private int Length;
     private int x_coordinate;
     private int y_coordinate;
     private boolean horizontal;
     private String name;  
+    private boolean validCoordinates;
  
-    public Ship(String name, int length, int x, int y, boolean horizontal) {
+    public Ship(String name, int length, boolean horizontal) {
+        Scanner scanner = new Scanner(System.in);
         this.name = name;
         this.Length = length;
-        this.x_coordinate = x;
-        this.y_coordinate = y;
+        System.out.println("Enter the starting coordinates for " + name +":");
+        this.x_coordinate = scanner.nextInt(10);
+        this.y_coordinate = scanner.nextInt(10);
         this.horizontal = horizontal;
     }
 
@@ -20,7 +25,7 @@ public class Ship {
             }
         } else {
             for (int i = 0; i < Length; i++) {
-                board.setShip(x_coordinate + i, y_coordinate, name.charAt(0));
+                board.setShip(x_coordinate + i, y_coordinate);
             }
         }
 

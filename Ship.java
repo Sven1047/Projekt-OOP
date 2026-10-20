@@ -13,9 +13,32 @@ public class Ship {
         this.horizontal = horizontal;
     }
 
-    public void setShip(int length, int x, int y) { 
-        
-       
+    public void setShip(Board board) {
+        if (horizontal) {
+            for (int i = 0; i < Length; i++) {
+                board.setShip(x_coordinate, y_coordinate + i);
+            }
+        } else {
+            for (int i = 0; i < Length; i++) {
+                board.setShip(x_coordinate + i, y_coordinate, name.charAt(0));
+            }
+        }
+
+    }
+    public int getLength() {
+        return Length;
+    }
+
+    public int getX() {
+        return x_coordinate;
+    }
+
+    public int getY() {
+        return y_coordinate;
+    }
+
+    public boolean isHorizontal() {
+        return horizontal;
     }
 }
  

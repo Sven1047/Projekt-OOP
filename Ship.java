@@ -12,9 +12,9 @@ public class Ship {
         Scanner scanner = new Scanner(System.in);
         this.name = name;
         this.Length = length;
-        System.out.println("Enter the starting coordinates and orientation for " + name +":");
-        this.x_coordinate = scanner.nextInt(10);
-        this.y_coordinate = scanner.nextInt(10);
+        System.out.println("Enter the starting coordinates and orientation (horizontal: true/false) for " + name +":");
+        this.x_coordinate = scanner.nextInt();
+        this.y_coordinate = scanner.nextInt();
         this.horizontal = scanner.nextBoolean();
         while (!setShip(board)) {
             board.printBoard();

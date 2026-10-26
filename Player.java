@@ -2,13 +2,11 @@ import java.util.Scanner;
 
 public class Player {
     private String name;
-    private int score;
 
     public Player() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter your name: ");
         this.name = scanner.nextLine();
-        this.score = 0;
     }
 
     public void setupShips(Board board) {

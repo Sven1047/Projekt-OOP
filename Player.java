@@ -10,32 +10,52 @@ public class Player {
         this.name = scanner.nextLine();
         this.score = 0;
     }
-    public boolean isAlreadyShipHere(Board board, int x, int y) {
-        return board.isShipAt(x, y);
-    }
-    public Board setupShips(Board board) {
+
+    public void setupShips(Board board) {
         // Logic to set up ships on the board
         System.out.println(name + ", set up your ships.");
         
-        Ship Destroyer1 = new Ship("Destroyer1", 2, true);
-        Ship Destroyer2 = new Ship("Destroyer2", 2, true);
-        Ship Destroyer3 = new Ship("Destroyer3", 2, true);
-        Ship Destroyer4 = new Ship("Destroyer4", 2, true);
+        Ship Destroyer1 = new Ship(board,"Destroyer1", 2);
+        Ship Destroyer2 = new Ship(board,"Destroyer2", 2);
+        Ship Destroyer3 = new Ship(board, "Destroyer3", 2);
+        Ship Destroyer4 = new Ship(board, "Destroyer4", 2);
 
 
-        Ship Submarine1 = new Ship("Submarine1", 3, true);
-        Ship Submarine2 = new Ship("Submarine2", 3, true);
-        Ship Submarine3 = new Ship("Submarine3", 3, true);
+        Ship Submarine1 = new Ship(board, "Submarine1", 3);
+        Ship Submarine2 = new Ship(board, "Submarine2", 3);
+        Ship Submarine3 = new Ship(board,"Submarine3", 3);
 
-        Ship Battle1 = new Ship("Battle1", 4, true);
-        Ship Battle2 = new Ship("Battle2", 4, true);
+        Ship Battle1 = new Ship(board,"Battle1", 4);
+        Ship Battle2 = new Ship(board,"Battle2", 4);
 
-        Ship Carrier = new Ship("Carrier", 5, true);
+        Ship Carrier = new Ship(board,"Carrier", 5);
         
-        return board;
     }
 
     public void takeTurn(Board board){
-        
+        Scanner scanner = new Scanner(System.in);
+        boolean hit = true;
+        while (hit) {
+            board.printShotBoard();
+            System.out.println(name + ", where do you want to shoot? Enter row and column.");
+            int shot_x = scanner.nextInt();
+            int shot_y = scanner.nextInt();
+            while (!board.canShootAt(shot_x, shot_y)) {
+                System.out.println("Invalid or already-used coordinates. Enter row and column again:");
+                shot_x = scanner.nextInt();
+                shot_y = scanner.nextInt();
+            }
+
+            hit = board.shootAt(shot_x, shot_y);
+            if (hit) {
+                if (board.isGameOver()) {
+                    System.out.println("Hit! All ships have been sunk.");
+                    break;
+                }
+                System.out.println("Hit! You may shoot again.");
+            } else {
+                System.out.println("No Hit");
+            }
+        }
     }
 }

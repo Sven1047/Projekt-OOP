@@ -8,42 +8,27 @@ public class Ship {
     private String name;  
     private boolean validCoordinates;
  
-    public Ship(String name, int length, boolean horizontal) {
+    public Ship(Board board, String name, int length) {
         Scanner scanner = new Scanner(System.in);
         this.name = name;
         this.Length = length;
-        System.out.println("Enter the starting coordinates for " + name +":");
+        System.out.println("Enter the starting coordinates and orientation for " + name +":");
         this.x_coordinate = scanner.nextInt(10);
         this.y_coordinate = scanner.nextInt(10);
-        this.horizontal = horizontal;
-    }
-
-    public void setShip(Board board) {
-        if (horizontal) {
-            for (int i = 0; i < Length; i++) {
-                board.setShip(x_coordinate, y_coordinate + i);
-            }
-        } else {
-            for (int i = 0; i < Length; i++) {
-                board.setShip(x_coordinate + i, y_coordinate);
-            }
+        this.horizontal = scanner.nextBoolean();
+        while (!setShip(board)) {
+            board.printBoard();
+            System.out.println("Invalid or occupied coordinates. Enter new coordinates and orientation for " + name + ":");
+            this.x_coordinate = scanner.nextInt(10);
+            this.y_coordinate = scanner.nextInt(10);
+            this.horizontal = scanner.nextBoolean();
         }
-
-    }
-    public int getLength() {
-        return Length;
+        board.printBoard();
     }
 
-    public int getX() {
-        return x_coordinate;
+    public boolean setShip(Board board) {
+        return board.placeShip(x_coordinate, y_coordinate, Length, horizontal);
     }
 
-    public int getY() {
-        return y_coordinate;
-    }
-
-    public boolean isHorizontal() {
-        return horizontal;
-    }
 }
  

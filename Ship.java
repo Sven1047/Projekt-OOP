@@ -8,8 +8,7 @@ public class Ship {
     private String name;  
     private boolean validCoordinates;
  
-    public Ship(Board board, String name, int length) {
-        Scanner scanner = new Scanner(System.in);
+    public Ship(Board board, String name, int length, Scanner scanner) {
         this.name = name;
         this.Length = length;
         System.out.println("Enter the starting coordinates and orientation (horizontal: true/false) for " + name +":");
@@ -27,7 +26,7 @@ public class Ship {
     }
 
     public boolean setShip(Board board) {
-        return board.placeShip(x_coordinate, y_coordinate, Length, horizontal);
+        return board.placeShip(x_coordinate, y_coordinate, Length, horizontal, name);
     }
 
 }

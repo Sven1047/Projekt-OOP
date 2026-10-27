@@ -3,12 +3,14 @@ public class Board {
     private int cols;
     private char[][] grid;
     private char[][] shots;
+    private String[][] shipNames;
 
     public Board(int rows, int cols) {
         this.rows = rows;
         this.cols = cols;
         this.grid = new char[rows][cols];
         this.shots = new char[rows][cols];
+        this.shipNames = new String[rows][cols];
         initializeGrid();
     }
 
@@ -51,7 +53,7 @@ public class Board {
         System.out.println();
     }
 
-    public boolean placeShip(int row, int col, int length, boolean horizontal) {
+    public boolean placeShip(int row, int col, int length, boolean horizontal, String shipName) {
         if (length <= 0 || row < 0 || row >= rows || col < 0 || col >= cols) {
             return false;
         }
@@ -72,6 +74,7 @@ public class Board {
             int shipRow = horizontal ? row : row + i;
             int shipCol = horizontal ? col + i : col;
             grid[shipRow][shipCol] = '\u25A0';
+            shipNames[shipRow][shipCol] = shipName;
         }
         return true;
     }
@@ -97,6 +100,22 @@ public class Board {
         boolean hit = isShipAt(row, col);
         shots[row][col] = hit ? 'X' : 'o';
         return hit;
+    }
+
+    public String getSunkShipNameAt(int row, int col) {
+        if (row < 0 || row >= rows || col < 0 || col >= cols || shipNames[row][col] == null) {
+            return null;
+        }
+
+        String shipName = shipNames[row][col];
+        for (int shipRow = 0; shipRow < rows; shipRow++) {
+            for (int shipCol = 0; shipCol < cols; shipCol++) {
+                if (shipName.equals(shipNames[shipRow][shipCol]) && shots[shipRow][shipCol] != 'X') {
+                    return null;
+                }
+            }
+        }
+        return shipName;
     }
 
     public boolean isGameOver() {

@@ -2,9 +2,10 @@ import java.util.Scanner;
 
 public class Player {
     private String name;
+    private final Scanner scanner;
 
-    public Player() {
-        Scanner scanner = new Scanner(System.in);
+    public Player(Scanner scanner) {
+        this.scanner = scanner;
         System.out.print("Enter your name: ");
         this.name = scanner.nextLine();
     }
@@ -13,20 +14,23 @@ public class Player {
         // Logic to set up ships on the board
         System.out.println(name + ", set up your ships.");
         
-        Ship Destroyer1 = new Ship(board,"Destroyer1", 2);
-        Ship Destroyer2 = new Ship(board,"Destroyer2", 2);
-        Ship Destroyer3 = new Ship(board, "Destroyer3", 2);
-        Ship Destroyer4 = new Ship(board, "Destroyer4", 2);
+        Ship Destroyer1 = new Ship(board,"Destroyer1", 2, scanner);
+        Ship Destroyer2 = new Ship(board,"Destroyer2", 2, scanner);
+        /*
+        Ship Destroyer2 = new Ship(board,"Destroyer2", 2, scanner);
+        Ship Destroyer3 = new Ship(board, "Destroyer3", 2, scanner);
+        Ship Destroyer4 = new Ship(board, "Destroyer4", 2, scanner);
 
 
-        Ship Submarine1 = new Ship(board, "Submarine1", 3);
-        Ship Submarine2 = new Ship(board, "Submarine2", 3);
-        Ship Submarine3 = new Ship(board,"Submarine3", 3);
+        Ship Submarine1 = new Ship(board, "Submarine1", 3, scanner);
+        Ship Submarine2 = new Ship(board, "Submarine2", 3, scanner);
+        Ship Submarine3 = new Ship(board,"Submarine3", 3, scanner);
 
-        Ship Battle1 = new Ship(board,"Battle1", 4);
-        Ship Battle2 = new Ship(board,"Battle2", 4);
+        Ship Battle1 = new Ship(board,"Battle1", 4, scanner);
+        Ship Battle2 = new Ship(board,"Battle2", 4, scanner);
 
-        Ship Carrier = new Ship(board,"Carrier", 5);
+        Ship Carrier = new Ship(board,"Carrier", 5, scanner);
+        */
         
     }
 
@@ -46,14 +50,21 @@ public class Player {
 
             hit = board.shootAt(shot_x, shot_y);
             if (hit) {
+                String sunkShipName = board.getSunkShipNameAt(shot_x, shot_y);
+                if (sunkShipName != null) {
+                    System.out.println("You sank " + sunkShipName + "!");
+                }
                 if (board.isGameOver()) {
                     System.out.println("Hit! All ships have been sunk.");
                     break;
                 }
-                System.out.println("Hit! You may shoot again.");
+                if (sunkShipName == null) {
+                    System.out.println("Hit! You may shoot again.");
+                }
             } else {
                 System.out.println("No Hit");
             }
+            scanner.nextLine();
         }
     }
 }

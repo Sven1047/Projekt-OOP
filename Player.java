@@ -67,4 +67,8 @@ public class Player {
             scanner.nextLine();
         }
     }
+
+    public String getName() {
+        return name;
+    }
 }

@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Ship {
@@ -8,19 +9,25 @@ public class Ship {
     private String name;  
     private boolean validCoordinates;
  
-    public Ship(Board board, String name, int length, Scanner scanner) {
+    public Ship(Board board, String name, int length) {
+        Scanner scanner = new Scanner(System.in);
         this.name = name;
         this.Length = length;
         System.out.println("Enter the starting coordinates and orientation (horizontal: true/false) for " + name +":");
-        this.x_coordinate = scanner.nextInt();
-        this.y_coordinate = scanner.nextInt();
-        this.horizontal = scanner.nextBoolean();
-        while (!setShip(board)) {
-            board.printBoard();
-            System.out.println("Invalid or occupied coordinates. Enter new coordinates and orientation for " + name + ":");
-            this.x_coordinate = scanner.nextInt(10);
-            this.y_coordinate = scanner.nextInt(10);
-            this.horizontal = scanner.nextBoolean();
+        while (true) {
+            try {
+                this.x_coordinate = scanner.nextInt();
+                this.y_coordinate = scanner.nextInt();
+                this.horizontal = scanner.nextBoolean();
+                if (setShip(board)) {
+                    break;
+                }
+                board.printBoard();
+                System.out.println("Invalid or occupied coordinates. Enter new coordinates and orientation for " + name + ":");
+            } catch (InputMismatchException e) {
+                scanner.nextLine();
+                System.out.println("Invalid input. Enter the coordinates and orientation again:");
+            }
         }
         board.printBoard();
     }

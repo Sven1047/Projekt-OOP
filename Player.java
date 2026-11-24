@@ -16,9 +16,7 @@ public class Player {
         
         Ship Destroyer1 = new Ship(board,"Destroyer1", 2);
         Ship Destroyer2 = new Ship(board,"Destroyer2", 2);
-        /*
-        Ship Destroyer2 = new Ship(board,"Destroyer2", 2);
-        Ship Destroyer3 = new Ship(board, "Destroyer3", 2);
+        Ship Destroyer3 = new Ship(board,"Destroyer3", 2);
         Ship Destroyer4 = new Ship(board, "Destroyer4", 2);
 
 
@@ -30,7 +28,6 @@ public class Player {
         Ship Battle2 = new Ship(board,"Battle2", 4);
 
         Ship Carrier = new Ship(board,"Carrier", 5);
-        */
         
     }
 
